@@ -1,0 +1,27 @@
+describe('Command Chaining Example', () => {
+  it('should demonstrate command chaining', () => {
+    // Encadeando comandos Cypress
+    cy.visit('https://example.com')
+      .get('.navbar') // Encontra o elemento com a classe "navbar"
+      .contains('About Us') // Procura pelo texto "About Us" dentro do elemento .navbar
+      .click() // Clica no elemento que contém o texto "About Us"
+      .url() // Obtém a URL atual
+      .should('include', '/about') // Verifica se a URL contém '/about'
+
+      const username = faker.internet.userName()
+    const firstName = faker.person.firstName()
+    const lastName = faker.person.lastName()
+    const email = faker.internet.email()
+    const phoneNumber = '55566677798'
+    const password = 'testpassword123'
+
+    function inputValidData(username) {
+    cy.log('Username will be filled')
+    cy.get('input[data-testid="user"]').type(username)
+    cy.get('#email').type('validemail@yeap.com')
+    cy.get('[data-cy="name"]').type('John')
+    cy.get('#lastName').type('Doe')
+    cy.get('[data-testid="phoneNumberTestId"]').type('10203040')
+    cy.get('#password').type('MyPass')
+    cy.get('#confirm').type('MyPass')
+    cy.get('h2').contains('Password').click()
